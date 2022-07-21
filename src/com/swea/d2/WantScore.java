@@ -18,7 +18,7 @@ public class WantScore { // 클래스 이름을 Solution으로 바꿔야 한다.
 				double d2 = sc.nextInt()*0.45;
 				double d3 = sc.nextInt()*0.2;
 				scores[i] = d1+d2+d3;
-				if(i == K) {
+				if(i == K-1) {
 					KsScore = scores[i];
 				}
 			}
@@ -42,15 +42,28 @@ public class WantScore { // 클래스 이름을 Solution으로 바꿔야 한다.
 			}
 			//K는 rank등임
 			int pakit = N/10;
+//			System.out.println(rank+"등 "+N+"명 중 "+pakit+"분위 " );
+
 			if(rank <= pakit)
-				System.out.println("D0");
+				System.out.println("A+");
 			else if(rank <= 2*pakit)
-				System.out.println("C-");
+				System.out.println("A0");
 			else if(rank <= 3*pakit)
-				System.out.println("C-");
+				System.out.println("A-");
 			else if(rank <= 4*pakit)
+				System.out.println("B+");
+			else if(rank <= 5*pakit)
+				System.out.println("B0");
+			else if(rank <= 6*pakit)
+				System.out.println("B-");
+			else if(rank <= 7*pakit)
+				System.out.println("C+");				
+			else if(rank <= 8*pakit)
+				System.out.println("C0");
+			else if(rank <= 9*pakit)
 				System.out.println("C-");
-			
+			else
+				System.out.println("D0");
 		}
 		sc.close();
 	}
