@@ -1,4 +1,4 @@
-package com.swea.ssafy;
+package com.swea.d2;
 
 import java.util.Scanner;
 
