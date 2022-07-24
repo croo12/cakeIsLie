@@ -1,9 +1,8 @@
-package com.beakjoon.greed;
+package com.beakjoon.greed.multitabSchedule;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class MultiTabSchedule02 { //메모리 초과됐다.
+public class MultiTabSchedule { //틀렸당.
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int hole = sc.nextInt(); //멀티탭 갯수
@@ -22,15 +21,8 @@ public class MultiTabSchedule02 { //메모리 초과됐다.
 		//실행을 함.
 		//나온 순서대로 빈멀티탭에 맞는 코드를 뽑는다.
 		//멀티탭이 꽉 찼는데 새 코드를 뽑아야 하는 경우 기존 코드를 빼야한다.
-		//무엇을 뺄것인가? --> 1. 남은 사용 횟수가 없는코드 
-		//남은 명령으로 다시 알고리즘을 수행한다.
-		result = thinking(holes, cmd, time, result);
+		//무엇을 뺄것인가? --> 1. 남은 사용 횟수가 없는코드 // 2. 가장 재사용이 멀리있는 코드.
 		
-		System.out.println(result);
-		sc.close();
-	}
-	
-	public static int thinking(int[] holes, int[] cmd, int[] time, int result) {
 		for (int i = 0; i < cmd.length; i++) {
 			if(checkHole(holes, cmd[i]) != -1) { // cmd[i]가 이미 꽂혀 있는 전자제품인가?
 				time[cmd[i]]--;
@@ -53,13 +45,32 @@ public class MultiTabSchedule02 { //메모리 초과됐다.
 						flag = true;
 					}
 				}
-				
-				if(!flag) {
-					return thinking(holes, Arrays.copyOfRange(cmd, i, cmd.length) , time, result);
+				if(!flag) { //재사용이 가장 먼 코드를 찾자
+					int[] distance = new int[hole];//거리를 저장할 배열
+					for (int j = 0; j < holes.length; j++) { //거리 조사
+						for (int c = i; c < cmd.length; c++) { 
+							if(holes[j] == cmd[c]) {
+								distance[j] = c;
+							}
+						}
+					}
+					int max = 0;
+					int num = -1;
+					for (int k = 0; k < distance.length; k++) { // 멀티탭 num번째 있는 놈이 가장 나중에 쓰인다. 
+						if(distance[k] > max) {
+							max = distance[k];
+							num = k;
+						}
+					}
+					holes[num] = cmd[num];
+					result++;
+					time[cmd[i]]--;
+					continue;
 				}
 			}
 		}
-		return result;
+		System.out.println(result);
+		sc.close();
 	}
 	
 	public static int checkHole(int[] holes, int cmd) { //전자제품 cmd가 이미 꽂혀 있는가?
