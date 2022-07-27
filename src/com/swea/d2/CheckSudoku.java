@@ -16,4 +16,8 @@ public class CheckSudoku { // 클래스 이름을 Solution으로 바꿔야 한�
 		}
 		sc.close();
 	}
+	
+	public static boolean check(int[] row) {
+		return true;
+	} 
 }

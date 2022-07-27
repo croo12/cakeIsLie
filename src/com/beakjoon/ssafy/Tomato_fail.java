@@ -1,35 +1,42 @@
 package com.beakjoon.ssafy;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-public class Tomato {
+public class Tomato_fail {
 	
 	public static int end = 0;
 	
-	public static void main(String[] args) {
-		Scanner sc= new Scanner(System.in);
-		int x = sc.nextInt();
-		int y = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int x = Integer.parseInt(st.nextToken());
+		int y = Integer.parseInt(st.nextToken());
 		int[][] box = new int[x][y];
 		
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
-				box[i][j] = sc.nextInt(); //1은 익은 토마토 , 2는 안익은 토마토 
+		for (int j = 0; j < y; j++) {
+			StringTokenizer tb = new StringTokenizer(br.readLine());
+			for (int i = 0; i < x; i++) {
+				box[i][j] = Integer.parseInt(tb.nextToken()); //1은 익은 토마토 , 2는 안익은 토마토 
 			}
 		}
 		int result = 0;
-		while(true) {
-			result++;
-			box = day_infection(box);
-			if( box == null) {
-				result=-1;
-				break;
-			}else if(end == 1) {
-				break;
+		
+		if(!is_all_rotten(box)) {
+			while(true) {
+				result++;
+				box = day_infection(box);
+				if( box == null) {
+					result=-1;
+					break;
+				}else if(end == 1) {
+					break;
+				}
 			}
 		}
 		System.out.println(result);
-		sc.close();
 	}
 	
 	public static int[][] today_rotten_tomato_checker(int[][] box) { //오늘 썩을 토마토는 어디에?
@@ -68,10 +75,12 @@ public class Tomato {
 				}
 			}
 		}
+		
 		if(is_all_rotten(box)) {
 			end = 1;
 			return box;
 		}
+		
 		if(cnt == 0) return null; //더이상 썩지 않음
 		else return box;
 	}
