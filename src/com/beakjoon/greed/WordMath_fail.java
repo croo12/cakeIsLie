@@ -10,7 +10,7 @@ public class WordMath_fail {
 	static String big = "";
 	static int cnt = 9;
 	static String[] index = new String[10];
-	static int sum = 0;
+	static long sum = 0;
 	
 	static Comparator<String> comp = new Comparator<String>() {
 		@Override
@@ -40,7 +40,7 @@ public class WordMath_fail {
 		}
 		
 		sortAndFor(words);
-		
+		for(String s : index) System.out.print(s+" ");
 		System.out.println(sum);
 	}
 	
@@ -53,10 +53,10 @@ public class WordMath_fail {
 		}
 		
 		big = words[0];
-		if(big.length() > 1) {
+		if(big.length() > 1)
 			big = big.substring(0,1);
-		}
-		if(!Arrays.stream(index).anyMatch(s -> big.equals(s))) {
+
+		if(!Arrays.stream(index).anyMatch(s -> big.equals(s))) { // 이거 자릿수 합 구하는거 써서 제일 높은 숫자 가진 애한테 다 몰아줘야함
 			int tmp = cnt;
 			index[cnt--] = big;
 			for (int i = 1; i < words[0].length(); i++) {
@@ -67,7 +67,7 @@ public class WordMath_fail {
 			int tmp = 0;
 			for (int i = 0; i < index.length; i++) {
 				if(big.equals(index[i])) {
-					tmp += i;
+					tmp = i;
 				}
 			}
 			for (int i = 1; i < words[0].length(); i++) {

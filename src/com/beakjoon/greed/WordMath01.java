@@ -8,11 +8,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WordMath01 {
+public class WordMath01 { // 아 알파벳 A부터 Z까지 다받는거였네
 	static String big = "";
 	static int cnt = 0;
-	static String[] key_index = {"A","B","C","D","E","F","G","H","I","J"};
-	static int[] ans = new int[10];
+	static String[] key_index = {"A","B","C","D","E","F","G","H","I","J","K",
+			"L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	static Integer[] ans = new Integer[26];
 
 	static Map<String, Integer> index = new HashMap<>();
 	
@@ -41,14 +42,27 @@ public class WordMath01 {
 		
 		sortAndFor(words);
 		for (int i = 0; i < key_index.length; i++) {
-			ans[i] = index.get(key_index[i]);
+			if(index.get(key_index[i]) != null)
+				ans[i] = index.get(key_index[i]);
 		}
 		
-		Arrays.sort(ans);
+		Arrays.sort(ans, new Comparator<Integer>(){
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				if(o1 == null && o2 == null) return 0;
+				if(o1 == null) return 1;
+				if(o2 == null) return -1;
+				return o2 - o1;
+			}
+		});
+		
 		long sum = 0;
 		int cnt = 9;
-		for(int i : ans) {
-			sum += i*cnt--;
+		for(int i = 0; i < ans.length; i++) {
+			if(ans[i] == null) break;
+//			System.out.print(ans[i] +" ");
+			sum += ans[i]*cnt--;
 		}
 		
 		System.out.println(sum);
