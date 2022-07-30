@@ -31,11 +31,11 @@ public class CutTrees {
 					break;
 				}else {
 					start = mid+1;
-					System.out.println(mid+"는 너무 길어");
+//					System.out.println(mid+"는 너무 길어");
 				}
 			}else {
 				end = mid -1;
-				System.out.println(mid+"는 너무 짧아");
+//				System.out.println(mid+"는 너무 짧아");
 			}
 			mid = (start+end)/2;
 		}
