@@ -2,7 +2,7 @@ package com.beakjoon.binarySearch;
 
 import java.util.Scanner;
 
-public class NumbersRoot {
+public class NumbersRoot_fail {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
