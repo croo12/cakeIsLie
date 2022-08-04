@@ -103,10 +103,4 @@ class Dungeon {
 		this.a = Integer.parseInt(s[1]);
 		this.h = Integer.parseInt(s[2]);
 	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "d [ type = "+ type + ", a = "+ a + ", h = "+h+" ]";
-	}
 }
