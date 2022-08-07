@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class SortMasterBae_fail {
+public class SortMasterBae {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -32,31 +32,18 @@ public class SortMasterBae_fail {
 			int mid = (start+end)/2;
 				
 			while(end >= start) {
-//					System.out.println(start + " + " + end + " : " + mid);
-				int cnt = 0;
-					
-				if(a[mid] > ans) {
+				if(a[mid] >= ans) {
 					end = mid-1;
 				}else if(a[mid] < ans) {
 					start = mid+1;
-				}else {
-//					System.out.println("답 "+qs[i]+" 는 " + mid + "에서 발견되었다.");
-					for(int j = 1; j <= mid; j++) {
-						if(a[mid] == a[mid-j]) {
-							cnt+=1;
-						}else {
-							break;
-						}
-					}
-					System.out.println(mid-cnt);
-					break;
 				}
 					
 				mid = (start+end)/2;
 			}
-			if(a[mid] != ans) {
-				System.out.println(-1);
-			}
+
+			if(start < n && start >= 0 && a[start] == ans) System.out.println(start);
+			else System.out.println(-1);
+			
 		}
 	}
 }
