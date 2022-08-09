@@ -72,7 +72,7 @@ public class RightSquare {
 				}
 			}
 			
-			if(result) {
+			if(result && lastX != n-1) {
 				for (int x = lastX+1; x < n; x++) {
 					for (int y = firstY; y <= lastY; y++) {
 						if(arr[x][y]) result = false;
