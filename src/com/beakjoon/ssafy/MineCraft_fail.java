@@ -1,5 +1,5 @@
 package com.beakjoon.ssafy;
 
-public class MineCraft {
+public class MineCraft_fail {
 
 }
