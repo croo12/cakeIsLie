@@ -9,7 +9,6 @@ import java.util.List;
 public class AC {
 	
 	static List<Integer> list; //리스트
-	static List<Integer> rlist; //뒤집기용 리스트
 	static boolean isReversed = false;
 	static String result;
 	
@@ -19,7 +18,6 @@ public class AC {
 		
 		while(T-- > 0) {
 			list = new ArrayList<>();
-			rlist = null;
 			result = null;
 			isReversed = false;
 			
@@ -53,9 +51,9 @@ public class AC {
 			if(result!=null) 
 				result = "error";
 			else if(isReversed)	{
-				for(int i=0; i<rlist.size(); i++) {
-					sb.append(rlist.get(i));
-					if(i != rlist.size() -1)
+				for(int i=0; i<list.size(); i++) {
+					sb.append(list.get(list.size()-1-i));
+					if(i != list.size() -1)
 						sb.append(",");
 				}
 				sb.append("]");
@@ -77,12 +75,6 @@ public class AC {
 		if(isReversed) {
 			isReversed = false;
 		}else {
-			if(rlist == null) {
-				rlist = new ArrayList<>();
-				for (int i = 0; i < list.size(); i++) {
-					rlist.add(list.get(list.size()-1-i));
-				}
-			}
 			isReversed = true;
 		}
 	}
@@ -95,10 +87,8 @@ public class AC {
 		}
 		if(isReversed) {
 			list.remove(list.size()-1);
-			rlist.remove(0);
 		}else {
 			list.remove(0);
-			if(rlist != null) rlist.remove(rlist.size()-1);
 		}
 	}
 }
