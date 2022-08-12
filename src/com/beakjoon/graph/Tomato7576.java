@@ -22,9 +22,9 @@ public class Tomato7576 {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		width = Integer.parseInt(st.nextToken());
 		height = Integer.parseInt(st.nextToken());
-		box = new int[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
+		box = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				box[i][j] = readInt();
 			}
 		}
@@ -36,22 +36,28 @@ public class Tomato7576 {
 		
 //========================입력부====================================
 		
+		
+		
 		int day = 0;
-		while(true) {
-			todayRotted = new boolean[width][height];
+		
+		
+		while(freshT>0) {
+			todayRotted = new boolean[height][width];
 			day++;
 			//썩은 사과를 찾는다
 			//썩은 사과의 상하좌우를 찾는다.
 			int rotten = search();
+			freshT -= rotten;
+			if(freshT == 0) {
+				break;
+			}
 			if(rotten == 0) {
 				day = -1;
 				break;
 			}
-			freshT -= rotten;
-			if(freshT < 0) {
-				break;
-			}
 			
+			
+//			System.out.printf("남은 새 도마도 %d개\n",freshT);
 			
 			//몇개가 썩었는지 센다.
 			
@@ -63,29 +69,30 @@ public class Tomato7576 {
 		
 		int todayCnt = 0;
 		
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
 				
-				System.out.println(todayRotted[i][j]);
+//				System.out.printf(
+//						"안녕하세요 도마도(%d,%d) %b, 상자의 도마도 = %d\n",j,i,todayRotted[i][j], box[i][j]);
 				
 				if(todayRotted[i][j]) continue;
 				
 				if(box[i][j] == 1) {
 					for (int k = 0; k < 4; k++) {
-						int nextX = i+dx[k];
-						int nextY = j+dy[k];
+						int nextX = j+dx[k];
+						int nextY = i+dy[k];
 						
-						if(nextX < 0 || nextX >= width || nextY < 0 || nextY >= height) {}
-						else if((!todayRotted[nextX][nextY]) && box[nextX][nextY] == 0){
-							todayRotted[nextX][nextY] = true;
-							box[nextX][nextY] = 1;
+						if(nextX < 0 || nextX >= width || nextY < 0 || nextY >= height) continue;
+						else if((!todayRotted[nextY][nextX]) && box[nextY][nextX] == 0){
+							todayRotted[nextY][nextX] = true;
+							box[nextY][nextX] = 1;
 							todayCnt++;
 						}
 					}
 				}
 			}
 		}
-		
+//		System.out.printf("잘 끝났어요 todayCnt , %d\n",todayCnt);
 		return todayCnt;
 	}
 	
