@@ -55,7 +55,7 @@ public class DFSandBFS1260 {
 		
 		Stack<Integer> stk = new Stack<>();
 		stk.push(start);
-		
+		System.out.printf("%d ",start);
 		
 		
 		while(!stk.isEmpty()) {
@@ -64,6 +64,10 @@ public class DFSandBFS1260 {
 			
 			boolean newChallenger = false;
 			
+			if(tmp == null) {
+				break;
+			}
+			
 			Iterator<Integer> iter = tmp.iterator();
 			while(iter.hasNext()) {
 				int next = iter.next();
@@ -71,14 +75,14 @@ public class DFSandBFS1260 {
 					stk.push(next);
 					visited[next] = true;
 					newChallenger = true;
-					
+					System.out.printf("%d ",next);
 					break;
 				}
 			}
 			
 			if(!newChallenger) {
 				stk.pop();
-				System.out.printf("%d ",now);
+				
 			}
 		}
 	}
@@ -89,10 +93,14 @@ public class DFSandBFS1260 {
 		
 		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(start);
-		
+		System.out.printf("%d ",start);
 		while(!q.isEmpty()) {
 			int now = q.poll();
 			HashSet<Integer> tmp = map.get(now);
+			
+			if(tmp == null) {
+				break;
+			}
 			
 			Iterator<Integer> iter = tmp.iterator();
 			while(iter.hasNext()) {
@@ -100,9 +108,9 @@ public class DFSandBFS1260 {
 				if(!visited[next]) {
 					q.add(next);
 					visited[next] = true;
+					System.out.printf("%d ",next);
 				}
 			}
-			System.out.printf("%d ",now);
 		}
 	}
 }
