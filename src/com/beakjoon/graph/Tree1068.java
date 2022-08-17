@@ -53,7 +53,6 @@ public class Tree1068 {
 				}
 			}
 		}
-		
 		System.out.println(cnt);
 	}
 }
