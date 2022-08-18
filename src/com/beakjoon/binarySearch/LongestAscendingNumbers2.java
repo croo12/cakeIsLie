@@ -3,6 +3,7 @@ package com.beakjoon.binarySearch;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class LongestAscendingNumbers2 {
@@ -20,29 +21,25 @@ public class LongestAscendingNumbers2 {
 		for (int i = 0; i < T; i++) {
 			snake[i] = Integer.parseInt(st.nextToken());
 		}
+		longestAscend(0);
+		int result = Arrays.stream(sums).max().getAsInt();
 		
-		int ending = checker(T-1);
-		System.out.println(ending);
+		System.out.println(result);
 	}
 	
-	private static int checker(int idx) {
-		int result = 1;
-		
-//		System.out.printf("현재 idx = %d\n",idx);
-		
-		if(idx != T-1) {
-			for (int i = idx+1; i < sums.length; i++) {
-				if(snake[idx] < snake[i]) {
-					result = Math.max(result, 1+sums[i]);
+	private static void longestAscend(int idx) {
+		int max = 0;
+		for (int i = idx+1; i < T; i++) {
+			if(snake[i] > snake[idx]) {
+				if(sums[i] > max) {
+					max = sums[i];
+				}else if(sums[i] == 0) {
+					longestAscend(i);
+					if(sums[i] > max)
+						max = sums[i];
 				}
 			}
 		}
-		
-		sums[idx] = result;
-		
-//		System.out.printf("현재 result = %d\n",result);
-		
-		if(idx == 0)return result; 
-		else return Math.max(result, checker(idx-1));
+		sums[idx] = max+1;
 	}
 }
