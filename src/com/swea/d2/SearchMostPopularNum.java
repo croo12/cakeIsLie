@@ -1,7 +1,6 @@
 package com.swea.d2;
 
 import java.util.Scanner;
-import java.io.FileInputStream;
  
 public class SearchMostPopularNum
 {
@@ -38,5 +37,6 @@ public class SearchMostPopularNum
              
             System.out.println("#"+test_number+" "+most_score);
         }
+        sc.close();
     }
 }

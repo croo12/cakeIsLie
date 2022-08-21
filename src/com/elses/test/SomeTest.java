@@ -44,12 +44,12 @@ public static void main(String args[]) throws NumberFormatException, IOException
  
         }
          
-        System.out.print("#"+test_case+" ");
+        System.out.print("#"+t+" ");
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]+" ");
         }
     }
- 
+    	sc.close();
     }
  
 }

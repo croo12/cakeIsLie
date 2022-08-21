@@ -11,7 +11,6 @@ public class KeyRogue5397 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
 		
 		Stack<Character> std = new Stack<>();
 		Stack<Character> tmp = new Stack<>();
@@ -44,10 +43,15 @@ public class KeyRogue5397 {
 				
 				
 			}
-			while(!tmp.isEmpty()) {
-				std.push(tmp.pop());
+			while(!std.isEmpty()) {
+				tmp.push(std.pop());
 			}
-			System.out.println(std.toString());
+			while(!tmp.isEmpty()) {
+				bw.write(tmp.pop());
+			}
+			bw.write("\n");
 		}
+		bw.flush();
+		bw.close();
 	}
 }

@@ -11,6 +11,7 @@ public class CheckSudoku { // 클래스 이름을 Solution으로 바꿔야 한�
 			System.out.print("#"+test_case+" ");
 			int[][] sudoku = new int[9][9];
 			
+			System.out.println(sudoku);
 			
 			System.out.println();
 		}
