@@ -1,6 +1,7 @@
 package com.beakjoon.ssafy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,10 +21,12 @@ public class SnowWhiteAnd7Dwarf3040 {
 		sum = sum - 100;
 		
 		searchSpy(sum);
+		Collections.sort(list);
 		
 		for (int i = 0; i < 7; i++) {
 			System.out.println(list.get(i));
 		}
+		sc.close();
 	}
 	
 	private static void searchSpy(int sum) {
