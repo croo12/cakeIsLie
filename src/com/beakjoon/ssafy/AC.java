@@ -22,7 +22,7 @@ public class AC {
 			isReversed = false;
 			
 			String[] orders = br.readLine().split("");
-			int n = Integer.parseInt(br.readLine());
+			Integer.parseInt(br.readLine());
 			String tmp = br.readLine();
 			String[] s = tmp.substring(1,tmp.length()-1).split(","); //콤마로 잘랐더니 문제 발생함
 			
