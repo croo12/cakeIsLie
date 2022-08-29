@@ -26,5 +26,6 @@ public class SuperMario2815 {
 			result = sum;
 		}
 		System.out.println(result);
+		sc.close();
 	}
 }

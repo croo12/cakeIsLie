@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class SumOfNumber {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt();
+		sc.nextInt();
 		String n = sc.next();
 		String[] s = n.split("");
 		int sum = 0;
