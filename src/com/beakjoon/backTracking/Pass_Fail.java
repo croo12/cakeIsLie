@@ -2,7 +2,7 @@ package com.beakjoon.backTracking;
 
 import java.util.Scanner;
 
-public class Pass {
+public class Pass_Fail {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
