@@ -17,6 +17,7 @@ public class Card2 {
 				cnt++;
 			}
 		}
-		
+		System.out.println(cnt);
+		sc.close();
 	}
 }
