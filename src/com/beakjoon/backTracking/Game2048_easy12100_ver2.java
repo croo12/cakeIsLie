@@ -45,26 +45,9 @@ public class Game2048_easy12100_ver2 {
 				proto[i] = arr[i].clone();
 			}
 
-//			for (int i = 0; i < N; i++) {
-//				for (int j = 0; j < N; j++) {
-//					System.out.print(proto[i][j] + " ");
-//				}
-//				System.out.println();
-//			}
-
 			for (int i = 0; i < 5; i++) {
 				move(dirs[i]);
-//				for (int[] is : proto) {
-//					for (int j : is) {
-//						System.out.print(j + " ");
-//					}
-//					System.out.println();
-//				}
 			}
-
-//			for (int[] is : proto)
-//				for (int i : is)
-//					max = Math.max(max, i);
 
 			return;
 		}
@@ -130,7 +113,6 @@ public class Game2048_easy12100_ver2 {
 					}
 					before = now;
 				}
-
 			}
 		}
 	}
