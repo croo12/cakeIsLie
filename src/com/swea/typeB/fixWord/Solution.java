@@ -46,7 +46,15 @@ class Solution {
 		char[][] correctWord = new char[5][11];
 		char[][] answerWord = new char[5][11];
 		
+		//체크용
+		int num = 0;
+		//
+		
 		while(m-- > 0) {//m번 시행
+			
+			//=============
+			num++;
+			//=============
 			
 			int id, timestamp, correctWordN, answerWordN;
 			int wordIdx;
@@ -67,6 +75,9 @@ class Solution {
 			
 			if (correctWordN != answerWordN) { //리턴 개수가 틀려용				
 				accepted = false; // 너 틀림
+				//==========================================================================
+				System.out.printf("%d번째 시도에서 틀림, 너의 오답 : 리턴값이 %d임 ",num,correctWordN);
+				//==========================================================================
 			} else { // 리턴 개수는 맞음
 				for (int i = 0; i < answerWordN; ++i) { // 리턴된 단어도 비교해보자
 					boolean isExist = false;
