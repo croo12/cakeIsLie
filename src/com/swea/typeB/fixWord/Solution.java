@@ -56,22 +56,23 @@ class Solution {
 			wordIdx = sc.nextInt(); // 단어 idx
 			
 			correctWordN = usersolution.search(id, timestamp, words[wordIdx], correctWord);
-			// 내가 만든 search. 교정된 단어의 개수를 리턴한다?
+			// 내가 만든 search. 교정된 단어의 개수를 리턴한다
+			// 교정된 단어가 있다면 correctWord에 넣어서 돌려보냄
 			
-			answerWordN = sc.nextInt();
+			answerWordN = sc.nextInt(); // 내가 맞았다면 리턴되었어야 하는 수
 			
 			for (int i = 0; i < answerWordN; ++i) {
 				String2Char(sc.next(), answerWord[i]);
-			}
+			}//내가 맞았다면 correctWord에 넣었어야 하는 단어
 			
-			if (correctWordN != answerWordN) {				
-				accepted = false;
-			} else {
-				for (int i = 0; i < answerWordN; ++i) {
+			if (correctWordN != answerWordN) { //리턴 개수가 틀려용				
+				accepted = false; // 너 틀림
+			} else { // 리턴 개수는 맞음
+				for (int i = 0; i < answerWordN; ++i) { // 리턴된 단어도 비교해보자
 					boolean isExist = false;
 					
 					for (int j = 0; j < correctWordN ; ++j) {
-						if (mstrcmp(answerWord[i], correctWord[j]) == 0) {
+						if (mstrcmp(answerWord[i], correctWord[j]) == 0) { //비-교
 							isExist = true;
 						}
 					}
@@ -83,7 +84,7 @@ class Solution {
 			}
 		}
 		
-		return accepted;
+		return accepted; // 야 성공이다!
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -95,20 +96,20 @@ class Solution {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		T = sc.nextInt();
+		T = sc.nextInt(); // 테스트 케이스의 수 반환
 		
 		for (test = 1 ; test <= T ; ++test) {
 			
-			wordCnt = sc.nextInt();
+			wordCnt = sc.nextInt();// 단어의 개수
 			
-			inputWords(wordCnt, sc);
+			inputWords(wordCnt, sc); // 를 배열에 넣음 (char배열에)
 			
-			n = sc.nextInt();
-			m = sc.nextInt();
+			n = sc.nextInt(); // 사람 수
+			m = sc.nextInt(); // 순번이 몇개임
 			
-			usersolution.init(n);
+			usersolution.init(n); //내가 만들어야하는 이닛
 			
-			if (run(m, sc)) {
+			if (run(m, sc)) { //run!!
 				System.out.println("#" + test + " 100");
 			} else {
 				System.out.println("#" + test + " 0");
