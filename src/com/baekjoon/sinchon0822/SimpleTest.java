@@ -15,17 +15,10 @@ public class SimpleTest {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			int c = Integer.parseInt(st.nextToken());
-			
-			int cnt = 0;
-			for (int x = 1; x <= a; x++) {
-				for (int y = 1; y <= b; y++) {
-					for (int z = 1; z <= c; z++) {
-						if(x%y == y%z && y%z == z%x)
-							cnt++;
-					}
-				}
-			}
-			System.out.println(cnt);
+			int min = 100001;
+			min = Math.min(b, a);
+			min = Math.min(c, min);
+			System.out.println(min);
 		}
 	}
 }

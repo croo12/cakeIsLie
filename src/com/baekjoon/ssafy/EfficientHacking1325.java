@@ -3,19 +3,22 @@ package com.baekjoon.ssafy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class EfficientHacking1325 {
 	static int N;
-	static PC[] pcs;
 	static int cnt;
+	static ArrayList<ArrayList<Integer>> trust = new ArrayList<>();
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
-		pcs = new PC[N + 1];
-		for (int i = 1; i <= N; i++) {
-			pcs[i] = new PC(i);
+		for (int i = 0; i <= N; i++) {
+			trust.add(new ArrayList<>());
 		}
 
 		int M = Integer.parseInt(st.nextToken());
@@ -23,61 +26,43 @@ public class EfficientHacking1325 {
 			st = new StringTokenizer(br.readLine());
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
-			pcs[b].trust[a] = true;
-			pcs[b].isLast = false;
+			trust.get(b).add(a);
 		}
-
-		boolean[] vis;
+		
+		int[] ans = new int[N+1]; 
 		int max = -1;
 		for (int i = 1; i <= N; i++) {
-			if(!pcs[i].isLast) {
-				cnt = 0;
-				vis = new boolean[N+1];
-				search(pcs[i], vis);
-				pcs[i].num = cnt;
-//				pcs[i].trust = vis;
-				max = Math.max(cnt, max);
+			cnt = 0;
+			bfs(i);
+			ans[i] = cnt;
+			max = Math.max(cnt, max);
+		}
+
+	StringBuilder sb = new StringBuilder();
+	for(int i = 1;i<=N;i++)
+		if(ans[i]==max)
+			sb.append(i).append(' ');
+
+	System.out.println(sb);
+	}
+	
+	static void bfs(int k) {
+		Queue<Integer> q = new LinkedList<>();
+		boolean[] vis = new boolean[N+1];
+		q.offer(k);
+		vis[k] = true;
+		
+		int now;
+		while(!q.isEmpty()) {
+			now = q.poll();
+			cnt++;
+			
+			for (int i : trust.get(now)) {
+				if(!vis[i]) {
+					q.offer(i);
+					vis[i] = true;
+				}
 			}
-		}
-		
-//		for (int i = 1; i <= N; i++) {
-//			System.out.println(i + "번째 PC의 값 : " + pcs[i].num + " "); 
-//		}
-		
-		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i <= N; i++)
-			if(pcs[i].num == max)
-				sb.append(i).append(' ');
-		
-		System.out.println(sb);
-	}
-
-	private static void search(PC pc, boolean[] vis) {
-//		if(pc.num != 1) {
-//			cnt += pc.num;
-//			return;
-//		}
-		cnt++;
-		vis[pc.me] = true;
-		
-		for (int i = 1; i <= N; i++) {
-			if(pc.trust[i] && !vis[i])
-				search(pcs[i], vis);
-		}
-//		System.out.println( pc.me + "번 PC의 리턴 값 : " + result);
-	}
-
-	static class PC {
-		boolean[] trust;
-		int num;
-		int me;
-		boolean isLast;
-
-		PC(int me) {
-			trust = new boolean[N + 1];
-			num = 1;
-			this.me = me;
-			isLast = true;
 		}
 	}
 }
