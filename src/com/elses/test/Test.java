@@ -1,64 +1,40 @@
 package com.elses.test;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Test {
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
-		while (T-- > 0) {
-			String p = br.readLine();
-			int n = Integer.parseInt(br.readLine());
-			String arr = br.readLine();
-			ArrayDeque<Integer> dq = new ArrayDeque<>();
-			boolean dir = true; // true : 정방향, false : 역방향
-			boolean flag = true;
-			// 문자열 분리 후 덱에 넣어준다
-			StringTokenizer st = new StringTokenizer(arr, "[],");
-			for (int i = 0; i < n; i++) {
-				dq.offer(Integer.parseInt(st.nextToken()));
-			}
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < p.length(); i++) {
-				char ch = p.charAt(i);
-				if (ch == 'R') {
-					dir = !dir;
-				} else {
-					if (dq.isEmpty()) {
-						sb.append("error");
-						flag = false;
-						break;
-					}
-					if (dir) {
-						dq.pollFirst();
-					} else {
-						dq.pollLast();
-					}
-				}
-			}
-			if (flag) {
-				sb.append("[");
-				if (dq.size() > 0) {
-					if (dir) {
-						while (!dq.isEmpty()) {
-							sb.append(dq.getFirst()).append(",");
-							dq.pollFirst();
-						}
-					} else {
-						while (!dq.isEmpty()) {
-							sb.append(dq.getLast()).append(",");
-							dq.pollLast();
-						}
-					}
-					sb.delete(sb.length() - 1, sb.length());
-				}
-				sb.append("]");
-				System.out.println(sb);
-			}else {
-				System.out.println(sb);
-			}
-		}
-	}
+static int n;
+static int[] ingredi = {1,2,3,4};
+static int[] visited = new int[n/2];
+public static void main(String[] args) throws NumberFormatException, IOException {
+
+    
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int T = Integer.parseInt(br.readLine());
+    StringTokenizer st;
+    for(int t =1; t<=T; t++) {
+        n = Integer.parseInt(br.readLine());
+        select(0,0);
+    }
+    
+    
+} // main
+
+
+static void select(int idx, int vidx) {
+    if(vidx == n/2){
+        // 음식 맛 구하기
+        System.out.println(Arrays.toString(visited));
+        return;
+    } else if(idx == n) return; 
+    
+    visited[vidx] = ingredi[idx];
+    select(idx+1, vidx+1);
+    select(idx+1, vidx);
+}
 }
