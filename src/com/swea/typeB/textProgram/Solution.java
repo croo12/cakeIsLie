@@ -11,7 +11,7 @@ class Solution
 	private final static int CMD_MOVECURSOR = 300;
 	private final static int CMD_COUNT      = 400;
 	
-	private final static UserSolution usersolution = new UserSolution();
+	private final static UserSolution_ex usersolution = new UserSolution_ex();
 	
 	private static void String2Char(char[] buf, String str, int maxLen)
 	{
@@ -63,6 +63,7 @@ class Solution
 				char ans = st.nextToken().charAt(0);
 				if (ret != ans)
 				{
+					System.out.println("커서 이동 틀림");
 					correct = false;
 				}
 			}
@@ -71,10 +72,11 @@ class Solution
 				char mChar = st.nextToken().charAt(0);
 				
 				int ret = usersolution.countCharacter(mChar);
-				
+
 				int ans = Integer.parseInt(st.nextToken());
 				if (ret != ans)
 				{
+					System.out.println("세는거 틀림, 답 : " + ans + " 니가 낸 답 ret : " +ret );
 					correct = false;
 				}
 			}

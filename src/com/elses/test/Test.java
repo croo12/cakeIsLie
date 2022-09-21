@@ -10,6 +10,8 @@ public class Test {
         int n = sc.nextInt();
         
         System.out.println((int)Math.ceil( Math.log(n+1) / Math.log(2) ));
+        
+        sc.close();
     }
 
 }

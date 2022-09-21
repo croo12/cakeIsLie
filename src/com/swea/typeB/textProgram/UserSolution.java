@@ -1,66 +1,67 @@
 package com.swea.typeB.textProgram;
 
 class UserSolution {
-//	private int H;
 	private int W;
 	private int cursor;
 	private int size;
-	private String now;
-	private int[][] alCnt;
-	private int divs;
-	private int[] div;
-	private final int DIV_DIV = 1000;
-
+	private int[][] count_stock;
+	private int[] count;
+	
 	void init(int H, int W, char mStr[]) {
-//		this.H = H;
+		count_stock = new int[90001][26];
+		count = new int[26];
 		this.W = W;
 		cursor = 0;
-		now = "";
+		
 		int i;
-		divs = H * W % DIV_DIV == 0 ? H * W / DIV_DIV : H * W / DIV_DIV + 1;
-		alCnt = new int[divs][26];
 		for (i = 0; mStr[i] != '\0'; i++) {
-			now += mStr[i];
-			alCnt[i / DIV_DIV][mStr[i] - 'a']++;
+//			count_stock[0][mStr[i] - 'a']++;
+			count[mStr[i] - 'a']++;
+			count_stock[i] = count.clone();
 		}
 		size = i;
-		div = new int[divs];
-		for (int j = 0; j < divs; j++) {
-			div[j] = j * DIV_DIV;
-		}
-
-//		System.out.println(divs);
+		
+		
+		
+//		for (int j = 0; j < size-1; j++) {
+//			count_stock[j+1] = count_stock[j].clone();
+//			count_stock[j+1][mStr[j] - 'a']--; 
+//		}
 	}
 
 	void insert(char mChar) {
-		if (cursor == size)
-			now += mChar;
-		else if (cursor == 0)
-			now = mChar + now;
-		else
-			now = now.substring(0, cursor) + mChar + now.substring(cursor);
+//		if (cursor == size)
+//			now += mChar;
+//		else if (cursor == 0)
+//			now = mChar + now;
+//		else
+//			now = now.substring(0, cursor) + mChar + now.substring(cursor);
+		
 		size++;
-
-		int nowDiv = -1;
-
-		if (divs == 1)
-			nowDiv = 0;
-		else {
-			int flag = -1;
-			for (int i = 0; i < divs; i++) {
-				if (cursor < div[i]) {
-					if (flag == -1)
-						flag = i - 1;
-					div[i]++;
-				}
-			}
-			if(flag == -1)
-				flag = divs - 1;
-			
-			nowDiv = flag;
+		int c = mChar - 'a';
+		
+		count[c]++;
+		
+		
+		System.arraycopy(count_stock, cursor, count_stock, cursor+1, size - cursor - 1);
+		for (int i = size-1; i > cursor; i--) {
+//			count_stock[i] = count_stock[i-1];
+			count_stock[i][c]++;
 		}
-
-		alCnt[nowDiv][mChar - 'a']++;
+		
+		if(cursor == 0)
+			count_stock[cursor] = new int[26];
+		else
+			count_stock[cursor] = count_stock[cursor-1].clone();
+		
+		count_stock[cursor][c]++;
+		
+//		count_stock[cursor] = count_stock[cursor].clone();
+//		count_stock[cursor][mChar-'a']++;
+//		for (int i = cursor - 1; i >= 0; i--) {
+//			count_stock[i][mChar-'a']++;
+//		}
+		
 		cursor++;
 
 //		System.out.println(now);
@@ -70,29 +71,32 @@ class UserSolution {
 		int y = mRow - 1;
 		int x = mCol - 1;
 		cursor = W * y + x;
+		
 
 		if (cursor >= size) {
 			cursor = size;
 			return '$';
-		} else
-			return now.charAt(cursor);
+		}
+		else if(cursor == 0) {
+			for (int i = 0; i < 26; i++) {
+				if(count_stock[cursor][i] == 1) {
+					return (char)(i+'a');
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < 26; i++) {
+				if(count_stock[cursor][i] != count_stock[cursor-1][i]) {
+					return (char)(i+'a');
+				}
+			}
+		}
+		return '\0';
 	}
 
 	int countCharacter(char mChar) {
-		int cnt = 0;
-		int min = Integer.MAX_VALUE;
-		for (int i = 0; i < divs; i++) {
-			if (cursor < div[i]) {
-				cnt += alCnt[i][mChar - 'a'];
-				min = Math.min(min, div[i]);
-			}
-		}
+		if(cursor == 0) return count[mChar - 'a'];
 
-		for (int i = cursor; i < min && i < size; i++) {
-			if (now.charAt(i) == mChar)
-				cnt++;
-		}
-
-		return cnt;
+		return count[mChar-'a'] - count_stock[cursor - 1][mChar-'a'];
 	}
 }
