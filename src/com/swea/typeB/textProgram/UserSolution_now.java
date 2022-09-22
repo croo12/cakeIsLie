@@ -1,7 +1,5 @@
 package com.swea.typeB.textProgram;
 
-import java.util.Arrays;
-
 class UserSolution_now {
 	private int W;
 	private int cursor;
@@ -30,18 +28,13 @@ class UserSolution_now {
 		now[cursor] = mChar;
 		count_stock[cursor/W][mChar - 'a']++;
 		
-		size++;
-		
-		
-		
-		for (int i = (cursor/W + 1) * W; i < size; i+=W) {
-			int c = now[i] - 'a';
-			int h = i/W;
-			count_stock[h][c]--;
-			if(h+1 <= size/W)
-				count_stock[h+1][c]++;
+		for (int i = cursor/W + 1; i <= size/W; i++) {
+			int c = now[i*W] - 'a';
+			count_stock[i-1][c]--;
+			count_stock[i][c]++;
 		}
 		
+		size++;
 		cursor++;
 	}
 
@@ -61,23 +54,22 @@ class UserSolution_now {
 	}
 
 	int countCharacter(char mChar) {
-		if(cursor == size) return 0;
-		
-		System.out.printf("현재 커서의 위치 %d\n",cursor);
-		for(int i = 0; i < size; i++)
-			System.out.print( now[i] + " ");
-		System.out.println();
+//		System.out.printf("현재 커서의 위치 %d\n현재 사이즈 %d\n",cursor, size);
+//		for(int i = 0; i < size; i++)
+//			System.out.print( now[i] + " ");
+//		System.out.println();
 		
 		int c = mChar - 'a';
-		int lastRow = size/W;
+		int end = (size-1)/W;
 		int cnt = 0;
-		for (int i = cursor/W; i <= lastRow; i++) {
+		for (int i = cursor/W + 1; i <= end; i++) {
 			cnt += count_stock[i][c];
 		}
 		
-		for (int i = cursor/W * W; i < cursor; i++) {
+		int last = Math.min((cursor/W + 1) * W, size);
+		for (int i = cursor; i < last; i++) {
 			if(now[i] == mChar)
-				cnt--;
+				cnt++;
 		}
 		
 		return cnt;

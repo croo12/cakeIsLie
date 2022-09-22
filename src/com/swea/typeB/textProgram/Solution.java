@@ -76,7 +76,7 @@ class Solution
 				int ans = Integer.parseInt(st.nextToken());
 				if (ret != ans)
 				{
-					System.out.println("세는거 틀림, 답 : " + ans + " 니가 낸 답 ret : " +ret );
+					System.out.printf("찾아야하는 단어 : %s\n세는거 틀림, 답 : %d\n니가 낸 답 ret : %d\n",mChar,ans,ret );
 					correct = false;
 				}
 			}
