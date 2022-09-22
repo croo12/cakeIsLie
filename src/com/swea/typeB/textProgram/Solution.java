@@ -11,7 +11,7 @@ class Solution
 	private final static int CMD_MOVECURSOR = 300;
 	private final static int CMD_COUNT      = 400;
 	
-	private final static UserSolution_ex usersolution = new UserSolution_ex();
+	private final static UserSolution_now usersolution = new UserSolution_now();
 	
 	private static void String2Char(char[] buf, String str, int maxLen)
 	{
