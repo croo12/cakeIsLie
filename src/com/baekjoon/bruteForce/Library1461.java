@@ -66,6 +66,7 @@ public class Library1461 {
 		if(cntMinus != 0)
 			comb(arr, 0, cntMinus, 0);
 		
+		return plus + minus;
 	}
 
 	private static void comb(int[] arr, int left, int right, int depth) {
