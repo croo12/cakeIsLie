@@ -50,7 +50,9 @@ public class ColorPaperDispatch17136 {
 				search(r+1,0,min);
 		
 		//1이라면
-		for (int i = 0; i < 5 && r != 10-i && c != 10-i && check(r,c,i) ; i++) {
+		for (int i = 0; 
+						i < 5 && r != 10-i && c != 10-i && check(r,c,i); 
+																		i++) {
 			if(stock[i] != 0) {
 				stock[i]--;
 				change(r,c,i,true);
