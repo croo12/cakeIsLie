@@ -63,13 +63,12 @@ public class AddressNaming2667 {
 		}
 		System.out.print(sb);
 	}
-}
-
-class AddressPair{
-	int x;
-	int y;
-	public AddressPair(int x, int y) {
-		this.x = x;
-		this.y = y;
+	static class AddressPair{
+		int x;
+		int y;
+		public AddressPair(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
 	}
 }

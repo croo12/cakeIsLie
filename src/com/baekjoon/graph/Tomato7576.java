@@ -24,7 +24,6 @@ public class Tomato7576 {
 		width = Integer.parseInt(st.nextToken());
 		height = Integer.parseInt(st.nextToken());
 		box = new int[height][width];
-//		boolean[][] visited = new boolean[height][width];
 		
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -42,9 +41,6 @@ public class Tomato7576 {
 		}else {
 			while(!q.isEmpty()) {
 				PairXY now = q.poll();
-				
-	//			visited[now.y][now.x] = true;
-	//			!visited[nextY][nextX] && 			
 				
 				for (int k = 0; k < 4; k++) {
 					int nextX = now.x + dx[k];
@@ -65,13 +61,6 @@ public class Tomato7576 {
 				last();
 			}
 		}
-		
-//		for(int[] a : box) {
-//			for(int i : a) System.out.printf("%d ",i);
-//			System.out.println();
-//		}
-//		System.out.printf("남은 과일 %d",freshT);
-		
 	}
 	
 	private static void last() {
@@ -99,13 +88,12 @@ public class Tomato7576 {
 				return 1;
 		}
 	}
-}
-
-class PairXY {
-	int x;
-	int y;
-	public PairXY(int x, int y) {
-		this.x = x;
-		this.y = y;
+	static class PairXY {
+		int x;
+		int y;
+		public PairXY(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
 	}
 }

@@ -25,6 +25,9 @@ public class Library1461 {
 		int far = 0;
 		boolean isMinus = false;
 		int cntMinus = 0;
+		
+		//
+		
 		for (int i = 0; i < n; i++) {
 			if(arr[i] < 0) {
 				cntMinus++;
