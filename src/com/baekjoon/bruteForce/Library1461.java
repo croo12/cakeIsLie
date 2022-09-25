@@ -20,104 +20,55 @@ public class Library1461 {
 						  .sorted()
 						  .toArray();
 		
-		System.out.println(Arrays.toString(arr));
-		
 		int far = 0;
-		boolean isMinus = false;
 		int cntMinus = 0;
 		
-		//
-		
+		//최댓값 구하고, 0 기준으로 양쪽 구분하기
 		for (int i = 0; i < n; i++) {
 			if(arr[i] < 0) {
 				cntMinus++;
 				if(far < arr[i] * -1) {
 					far = arr[i] * -1; 
-					isMinus = true;
 				}
 			}else {
 				if(far < arr[i]) {
 					far = arr[i];
-					isMinus = false;
 				}
 			}
 		}
 
+		int plus = n - cntMinus;
+		int minus = cntMinus;
+		
 		int len = 0;
+		//m을 최대한 꽉채워서 성큼성큼 가기 -> 실패
+		//+와 - 쪽 중 m으로 나누어 떨어지지 않는 부분이 있으면 그 나머지 만큼 쩌리를 먼저 왕복 이동해야 최소일 듯?
+		//왕복이니 전부 * 2해줌. 그리고 가장 긴 거리만 빼면 됨
 		
-		
-//		if(isMinus) {
-//			len += goPlus(cntMinus, arr, isMinus);
-//			len += goMinus(cntMinus, arr, isMinus);
-//		}else {
-//			len += goMinus(cntMinus, arr, isMinus);
-//			len += goPlus(cntMinus, arr, isMinus);
-//		}
-		
-		System.out.println(len);
-	}
-	
-	static int plus;
-	static int minus;
-	
-	static int divide(int cntMinus, int[] arr, boolean isMinus) {
-		plus = 0;
-		minus = 0;
-		if(cntMinus != n)
-			comb(arr, cntMinus, n-1, 0);
-		
-		if(cntMinus != 0)
-			comb(arr, 0, cntMinus, 0);
-		
-		return plus + minus;
-	}
-
-	private static void comb(int[] arr, int left, int right, int depth) {
-		if(depth == n/m) {
+		if(plus % m == 0) {
+			for (int i = cntMinus -1 + m; i <= cntMinus - 1 + plus; i+= m) {
+				len += arr[i] * 2;
+			}
+		}else {
+			len += arr[cntMinus - 1 + plus%m]*2;
 			
-			return;
+			for (int i = cntMinus - 1 + plus%m + m; i <= cntMinus - 1 + plus; i+= m) {
+				len += arr[i] * 2;
+			}
 		}
 		
+		if(minus % m == 0) {
+			for (int i = cntMinus - m; i >= cntMinus - minus; i-= m) {
+				len += arr[i] * 2 * -1;
+			}
+		}else {
+			len += arr[cntMinus - minus%m] * 2 * -1;
+			
+			for (int i = cntMinus - minus%m - m; i >= cntMinus - minus; i-= m) {
+				len += arr[i] * 2 * -1;
+			}
+		}
 		
-		
+		System.out.println(len - far);
 	}
-	
-	
-//	static int goPlus(int cntMinus, int[] arr, boolean isMinus) {
-//		if(cntMinus == n) return 0;
-//		
-//		int idx = cntMinus - 1;
-//		int len = 0;
-//		while(true) {
-//			if(n > idx + m)
-//				len += arr[(idx = idx + m)] * 2;
-//			else {
-//				len += arr[n-1];
-//				break;
-//			}
-//		}
-//		
-//		if(isMinus) len += arr[n-1];
-//		
-//		return len;
-//	}
-//	
-//	static int goMinus(int cntMinus, int[] arr, boolean isMinus) {
-//		if(cntMinus == 0) return 0;
-//		
-//		int idx = cntMinus;
-//		int len = 0;
-//		while(true) {
-//			if(-1 < idx - m)
-//				len += arr[(idx = idx - m)] * 2 * -1;
-//			else {
-//				len += arr[0] * -1;
-//				break;
-//			}
-//		}
-//		
-//		if(!isMinus) len += arr[0] * -1;
-//		
-//		return len;
-//	}
 }
