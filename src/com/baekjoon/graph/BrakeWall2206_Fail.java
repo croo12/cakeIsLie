@@ -1,4 +1,4 @@
-package com.baekjoon.backTracking;
+package com.baekjoon.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BrakeWall2206 {
+public class BrakeWall2206_Fail {
 	
 	static int[][] arr;
 	static boolean[][] vis;
