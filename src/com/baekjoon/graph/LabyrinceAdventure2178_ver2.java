@@ -7,28 +7,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class LabyrinceAdventure2178 {
-	
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static int[][] map;
-	static boolean[][] visited;
-	
-	static int N;
-	static int M;
+public class LabyrinceAdventure2178_ver2 {
 	
 	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
 		
-		map = new int[N+2][M+2];
-		visited = new boolean[N+2][M+2];
+		int[][] map = new int[N+2][M+2];
 		
-		String[] line;
+		String line;
 		for (int i = 1; i < N+1; i++) {
-			line = br.readLine().split("");
+			line = br.readLine();
 			for (int j = 1; j < M+1; j++) {
-				map[i][j] = Integer.parseInt(line[j-1]);
+				map[i][j] = line.charAt(j-1) - '0';
 			}
 		}
 	
@@ -41,17 +34,17 @@ public class LabyrinceAdventure2178 {
 		
 		while(q.size()!=0) {
 			Pair now = q.poll();
-			visited[now.y][now.x] = true;
 			
 			for(int k =0; k < 4; k++) {
 				int nextX = now.x + dx[k];
 				int nextY = now.y + dy[k];
-				if(map[nextY][nextX] == 1 && !visited[nextY][nextX]) {
+				if(map[nextY][nextX] == 1) {
 					map[nextY][nextX] += map[now.y][now.x];
 					q.add(new Pair(nextX,nextY));
 				}
 			}
 		}
+		//시작 위치가 3으로 변하지만 상관없음
 		
 		System.out.println(map[N][M]);
 	}
