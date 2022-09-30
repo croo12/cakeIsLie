@@ -1,8 +1,9 @@
-package com.baekjoon.backTracking;
+package com.baekjoon.implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class CastleDefence17135 {
@@ -53,6 +54,8 @@ public class CastleDefence17135 {
 				tmp[i] = arr[i].clone();
 			}
 			
+			System.out.println(Arrays.toString(archers));
+			
 			int cnt = 0;
 			
 			int[][] orcs = {{-1,-1},{-1,-1},{-1,-1}};
@@ -89,6 +92,8 @@ public class CastleDefence17135 {
 					}
 				}
 			}//row
+			
+			System.out.println(cnt);
 			
 			max = Math.max(cnt, max);
 			
