@@ -104,11 +104,11 @@ public class 브레인퍽인터프리터정답 {
 			sc.nextLine();
 			instructionArray = sc.nextLine().toCharArray();
 			inputArray = sc.nextLine().toCharArray();
-//			System.err.println("instr: " + new String(instructionArray));
-//			System.err.println("input: " + new String(inputArray));
-//			if (inputArray.length != inputSize || instructionArray.length != codeLen) {
-//				System.exit(1);
-//			}
+			System.err.println("instr: " + new String(instructionArray));
+			System.err.println("input: " + new String(inputArray));
+			if (inputArray.length != inputSize || instructionArray.length != codeLen) {
+				System.exit(1);
+			}
 			genMapping();
 			fast = new BFData(memsize);
 
@@ -137,6 +137,7 @@ public class 브레인퍽인터프리터정답 {
 				System.out.println("Loops " + loopstart + " " + loopend);
 			}
 		}
+		sc.close();
 	}
 
 	private static byte comma(BFData d) {
