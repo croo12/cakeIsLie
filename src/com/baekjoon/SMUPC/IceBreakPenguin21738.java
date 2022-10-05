@@ -24,5 +24,4 @@ public class IceBreakPenguin21738 {
 		//그리고 제일 많이 얼음깨는 경로를 dfs로 찾기
 		
 	}
-	
 }
