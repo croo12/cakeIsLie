@@ -27,7 +27,6 @@ public class L {
 		int sum1 = 0;
 		int minL = Integer.MAX_VALUE;
 		
-		
 		long max = Integer.MIN_VALUE;
 		
 		for (int i = 0; i < N; i++) {
