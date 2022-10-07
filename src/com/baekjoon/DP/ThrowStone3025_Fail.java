@@ -1,4 +1,4 @@
-package com.baekjoon.graph;
+package com.baekjoon.DP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
