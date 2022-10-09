@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Cubing5373 {
+public class Cubing5373_Nope {
 	//윗면은 흰색, 아랫면 노란색, 앞면 빨강, 뒷면 오렌지, 왼쪽면 초록, 오른쪽 파랑
 	//위 아래 앞 뒤 왼 오;
 	//0 1 2 3 4 5
