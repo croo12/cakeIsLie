@@ -1,4 +1,4 @@
-package com.baekjoon.tree;
+package com.baekjoon.daq;
 
 import java.io.BufferedReader;
 import java.io.IOException;
