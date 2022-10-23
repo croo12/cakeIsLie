@@ -1,6 +1,5 @@
 package com.baekjoon.daq;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class EHang3_11401 {
