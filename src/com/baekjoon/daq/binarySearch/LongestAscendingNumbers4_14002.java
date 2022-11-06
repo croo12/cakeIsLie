@@ -13,9 +13,9 @@ public class LongestAscendingNumbers4_14002 {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 
 		Node[] snake = new Node[T+1];
-		snake[0] = new Node(0, null);
-		for (int i = 1; i < T; i++) {
-			snake[i] = new Node(1001, snake[i - 1]);
+		snake[0] = new Node(-1000000001, null);
+		for (int i = 1; i <= T; i++) {
+			snake[i] = new Node(1000000001, snake[i - 1]);
 		}
 		int length = 0;
 

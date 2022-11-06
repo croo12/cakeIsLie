@@ -21,9 +21,8 @@ public class LargestSquareInHistogram6549 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
-		//분할 정복으로 풀 수 있지 않을까?
-		//근데 반씩 나눠서 구하면 홀수일 때는 어떻게함
-		//짝이 안맞으면 어떻게함!!!
+		//분할 정복으로 푸는거 종만북에서 봄
+		//근데 반씩 나눠서 구하면 홀수일 때는 어떻게 하더라
 		
 		StringTokenizer st;
 		
