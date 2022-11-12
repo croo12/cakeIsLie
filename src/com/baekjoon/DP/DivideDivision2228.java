@@ -20,8 +20,7 @@ public class DivideDivision2228 {
 	int M;
 	int[][] cache;
 	int[][] sum;
-	
-	int[] record;
+	// int[] record;
 
 	// int ans;
 	
@@ -38,9 +37,9 @@ public class DivideDivision2228 {
 		//구간을 M개로 나누었을 때, 최고의 합
 		//구간이 X개 남았다면 남은 칸은 X + X-1개 있어야 함
 
-		record = new int[M];
+		// record = new int[M];
 
-		//y부터 x까지의 합
+		//y부터 x까지의 합6
 		sum = new int[N][N];
 		for (int i = 0; i < N; i++) {
 			sum[i][i] = Integer.parseInt(br.readLine());
