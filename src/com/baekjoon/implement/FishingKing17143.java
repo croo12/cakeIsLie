@@ -81,19 +81,19 @@ public class FishingKing17143 {
           while( s != 0 ){
 
             if( shark.d == 1){
-              int move = Math.min(s, R - r);
-              s -= move;
-              r = r + move;
-              
-              if(r == R){
-                shark.d = dirChange[shark.d];
-              }
-            }else{
               int move = Math.min(s, r - 1);
               s -= move;
               r = r - move;
               
               if(r == 1){
+                shark.d = dirChange[shark.d];
+              }
+            }else{
+              int move = Math.min(s, R - r);
+              s -= move;
+              r = r + move;
+              
+              if(r == R){
                 shark.d = dirChange[shark.d];
               }
             }
