@@ -3,11 +3,11 @@ package com.baekjoon.greed;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-//틀린이유
-// 가장 맘이 맞는 사람이 여럿이고
-// 그 중 하나의 경우만 정답일 때가 있음
+import javafx.scene.layout.Priority;
 
 public class CoupleMaking1727 {
   public static void main(String[] args) {
@@ -25,106 +25,66 @@ public class CoupleMaking1727 {
     int MALE = Integer.parseInt(st.nextToken());
     int FEMALE = Integer.parseInt(st.nextToken());
 
-    int[] male = new int[MALE];
-    int[] female = new int[FEMALE];
+    boolean isMinus = MALE > FEMALE;
 
-    // 최고의 짝을 찾으려 한다...
-    // 당연히 나랑 가장 적은 차이인 사람 만나는게 베스트임
-    // 나랑 젤 잘맞는 사람 찾기
-    // 그 사람에게 이미 짝이 있다면 승부보기
-    // 지면 그 다음으로 잘맞는 사람 찾기
+    // 만약 모든 경우의 수를 다 조사한다면 1000!
 
-    st = new StringTokenizer(br.readLine(), " ");
+    PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+      @Override
+      public int compare(Integer o1, Integer o2) {
+        return Integer.compare(Math.abs(o1), Math.abs(o2));
+      }
+    });
+
+    st = new StringTokenizer(br.readLine());
     for (int i = 0; i < MALE; i++) {
-      male[i] = Integer.parseInt(st.nextToken());
+      pq.offer(Integer.parseInt(st.nextToken()));
     }
 
-    st = new StringTokenizer(br.readLine(), " ");
+    st = new StringTokenizer(br.readLine());
     for (int i = 0; i < FEMALE; i++) {
-      female[i] = Integer.parseInt(st.nextToken());
+      pq.offer(Integer.parseInt(st.nextToken()) * -1);
     }
 
-    int ans = 1_000_000_001;
+    int sum = 0;
 
-    if (MALE > FEMALE) {
-      diff = new int[FEMALE][2];
+    int now;
+    int[] stack = new int[isMinus ? MALE : FEMALE];
+    int[] best_stack = new int[isMinus ? FEMALE : MALE];
 
-      for (int[] i : diff) {
-        i[0] = ans;
-        i[1] = -1;
-      }
+    int rear = -1;
+    int best_rear = -1;
 
-      waitingNumber = FEMALE;
-      end = MALE;
+    while (!pq.isEmpty()) {
+      now = pq.poll();
 
-      match(female, male, 0, true);
-    } else {
-      diff = new int[MALE][2];
+      if ((isMinus && now < 0) || (!isMinus && now > 0)) {
+        if (best_rear != -1 && best_stack[best_rear] * now < 0) {
+          sum += Math.abs(best_stack[best_rear] + now);
+          continue;
+        }
 
-      for (int[] i : diff) {
-        i[0] = ans;
-        i[1] = -1;
-      }
+        int left = 1_000_001;
+        if (rear != -1)
+          left = Math.abs(now + stack[rear]);
+        int right = Math.abs(now + pq.peek());
 
-      waitingNumber = MALE;
-      end = FEMALE;
+        if (rear != -1 && now * stack[rear] < 0 && left <= right) {
+          stack[rear] = 0;
+          rear--;
+          sum += left;
+        } else if (now * pq.peek() < 0) {
+          pq.poll();
+          sum += right;
+        } else {
+          best_stack[++best_rear] = now;
+        }
 
-      match(male, female, 0, true);
-    }
-
-    ans = 0;
-    for (int[] i : diff) {
-      ans += i[0];
-    }
-
-    System.out.println(ans);
-  }
-
-  int[][] diff;
-  int waitingNumber;
-  int end;
-
-  private void match(int[] waiting, int[] challenger, int num, boolean flag) {
-    if (num == end) {
-      return;
-    }
-
-    int challengerMind = challenger[num];
-    // 가장 맘이 맞는 사람
-    int best = 1_000_000_001;
-    // 고백한 사람
-    int theMan = -1;
-
-    for (int i = 0; i < waitingNumber; i++) {
-      int gap = Math.abs(challengerMind - waiting[i]);
-      if (gap < diff[i][0] && gap < best) {
-        best = gap;
-        theMan = i;
+      } else {
+        stack[++rear] = now;
       }
     }
 
-    // 솔로로 남게됨
-    if (theMan == -1) {
-      if (flag) {
-        match(waiting, challenger, num + 1, flag);
-      }
-      return;
-    }
-
-    diff[theMan][0] = best;
-
-    // 전에 얘랑 사귀던 애
-    int last = diff[theMan][1];
-    // 이제 내가 사귐
-    diff[theMan][1] = num;
-
-    if (last != -1) {
-      // 전 남친도 새로운 사람 찾아 떠난다
-      match(waiting, challenger, last, false);
-    }
-
-    // 다음 사람 출동
-    if (flag)
-      match(waiting, challenger, num + 1, flag);
+    System.out.println(sum);
   }
 }

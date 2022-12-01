@@ -43,15 +43,6 @@ public class ManOfStudy5213 {
       }
     }
 
-    // for (int i = 0; i < N + 2; i++) {
-    // for (int j = 0; j < N + 2; j++) {
-    // System.out.print(domino[i][j] + " ");
-    // }
-    // System.out.println();
-    // }
-
-    // System.out.println("hi");
-
     Queue<Node> q = new ArrayDeque<>();
     q.offer(new Node(1, 1, 1, 1, null));
     vis[1] = true;
