@@ -7,8 +7,6 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-import javafx.scene.layout.Priority;
-
 public class CoupleMaking1727 {
   public static void main(String[] args) {
     try {
