@@ -13,7 +13,6 @@ public class Sheep3184 {
             throw new RuntimeException(e);
         }
     }
-
     int R, C;
     int totalSheep, totalWolf;
     int tmpSheep, tmpWolf;
