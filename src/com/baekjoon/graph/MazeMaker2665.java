@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+//와 됐다
 public class MazeMaker2665 {
     public static void main(String[] args) {
         try {
