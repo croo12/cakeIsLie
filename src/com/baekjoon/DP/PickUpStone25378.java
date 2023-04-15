@@ -29,20 +29,25 @@ public class PickUpStone25378 {
     }
 
     private int dfs(int depth, int minus) {
-        if ( depth == N - 1) {
-            return 1;
+
+        if ( cache[depth] != INF){
+            return cache[depth];
         }
 
         int nowMe = arr[depth] - minus;
 
+        if ( depth == N - 1){
+            return nowMe == 0 ? 0 : 1;
+        }
+
         if ( nowMe == 0) {
-            return dfs(depth + 1, 0);
+            return cache[depth] = dfs(depth + 1, 0);
         }
         else if  (nowMe > 0 ) {
             int patternA = dfs(depth + 1, nowMe) + 1;
             int patternB = dfs(depth + 1, 0) + 1;
 
-            return Math.min(patternA, patternB);
+            return cache[depth] = Math.min(patternA, patternB);
         }
         else {
             //있을 수 없는 일이야....
