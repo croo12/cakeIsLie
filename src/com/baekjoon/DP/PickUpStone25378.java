@@ -3,6 +3,7 @@ package com.baekjoon.DP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class PickUpStone25378 {
@@ -12,15 +13,15 @@ public class PickUpStone25378 {
 
     int N;
     int[] arr;
-    int[] cache;
+    HashMap<Integer, Integer>[] cache;
     final int INF = 987_654_321;
 
     private void solution() {
         input();
 
-        cache = new int[N];
-        for ( int i = 0; i < N; i++){
-            cache[i] = INF;
+        cache = new HashMap[N];
+        for (int i = 0; i < N; i++) {
+            cache[i] = new HashMap<>();
         }
 
         int ans = dfs(0, 0);
@@ -28,29 +29,38 @@ public class PickUpStone25378 {
         System.out.println(ans);
     }
 
-    private int dfs(int depth, int minus) {
+    int dfs (int depth, int minus) {
 
-        if ( cache[depth] != INF){
-            return cache[depth];
+        int now = arr[depth] - minus;
+
+        if ( depth == N - 1) {
+            if ( now == 0)
+                return 0;
+            else
+                return 1;
         }
 
-        int nowMe = arr[depth] - minus;
-
-        if ( depth == N - 1){
-            return nowMe == 0 ? 0 : 1;
+        if ( cache[depth].containsKey(now) ) {
+            return cache[depth].get(now);
         }
 
-        if ( nowMe == 0) {
-            return cache[depth] = dfs(depth + 1, 0);
-        }
-        else if  (nowMe > 0 ) {
-            int patternA = dfs(depth + 1, nowMe) + 1;
-            int patternB = dfs(depth + 1, 0) + 1;
+        if ( now > 0 ) {
+            int caseA = dfs(depth + 1, 0) + 1;
+            int caseB = dfs(depth + 1, now) + 1;
+            int min = Math.min(caseA, caseB);
 
-            return cache[depth] = Math.min(patternA, patternB);
+            cache[depth].put(now, min);
+
+            return min;
+        }
+        else if (now == 0) {
+            int min = dfs(depth + 1, 0);
+
+            cache[depth].put(now, min);
+
+            return min;
         }
         else {
-            //있을 수 없는 일이야....
             return INF;
         }
     }

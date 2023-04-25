@@ -22,16 +22,7 @@ public class PlanetTurnel2887 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
 
-		//중점을 연결하는 모든 간선 N*(N-1)/2
-		//N <= 100,000
-		//모든 중점은 N-1개의 간선으로 연결했을 때
-		//간선의 가중치가 최소가 되는 경우의 수는?
-
-		//최소 스패닝 트리를 찾는 문제
-
-		//간선이 짱 많으니 프림이겠지
-		//근데 N = 100000이면 시간안에 될까
-		//일단 해보자
+		//크루스칼 ㄱㄱ
 
 		vt = new int[N][4];
 		boolean[] vis = new boolean[N];
